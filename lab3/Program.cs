@@ -124,6 +124,31 @@ namespace lab3
             return ($"Destination - {destination}, flight number is {flight_number}, type of plane - {type_of_plane}, {depature_time} - depature time on {day}.");
         }
 
+        public void Town(ref string t, out bool flg)
+        {
+            if(this.destination==t)
+            {
+                flg = true;
+            }
+            else
+            {
+                flg = false;
+            }
+        }
+
+
+        public void D_day(ref string t, out bool flg)
+        {
+            if (this.day == t)
+            {
+                flg = true;
+            }
+            else
+            {
+                flg = false;
+            }
+        }
+
 
 
         /////////////////////////////////////////////////////////
@@ -135,7 +160,7 @@ namespace lab3
         {
             static void Main(string[] args)
             {
-                // FIRST TASK
+                // SECOND TASK
 
                 Airline u_one = new Airline();
                 Airline u_two = new Airline("Gomel", "CY-24", "3:00", "Tuesday");
@@ -147,12 +172,12 @@ namespace lab3
 
                 Console.WriteLine(u_one.Equals(u_three)); // Пример. Сравнение 1-го и 3-го рейса
 
-                string[] cities = { "Minsk", "Berlin", "Kiev", "Odessa", "Tokyo", "Moscow", "Paris", "Barcelona"};
+                string[] cities = { "Minsk", "Berlin", "Kiev", "Odessa", "Tokyo", "Moscow", "Paris", "Barcelona" };
 
                 bool flag = false;
                 foreach (string city in cities)
                 {
-                    if(u_one.destination == city)
+                    if (u_one.destination == city)
                     {
                         Console.WriteLine($"\n{u_one.ToString()}\n================\n");
                         flag = true;
@@ -193,12 +218,82 @@ namespace lab3
                     Console.WriteLine("This city is not on the list\n================\n");
                 }
 
-                Console.WriteLine($"\nFor the 2nd task, {count} flight(s) was(were) taken");
-
-                //SECOND TASK
+                Console.WriteLine($"\nFor the 2nd task, {count} flight(s) was(were) taken\n\n");
 
 
 
+
+                // THIRD TASK
+
+                
+
+                Airline[] arr = { new Airline("Minsk", "CY-24","13:50","Monday"), new Airline("Gomel", "CY-24", "14:45", "Friday"), new Airline("Odessa", "CY-47", "2:35", "Monday"), new Airline("Minsk", "9 - Boeing 737-800", "4:20", "Sunday")};
+                //for(int i =0; i<arr.Length;i++)
+                //{
+                //    Console.WriteLine("Введите:\n1) пункт назначения ->");
+                //    arr[i].destination = Console.ReadLine();
+
+                //    Console.WriteLine("2) тип самолёта ->");
+                //    arr[i].type_of_plane = Console.ReadLine();
+
+                //    Console.WriteLine("3) время отправления ->");
+                //    arr[i].depature_time = Console.ReadLine();
+
+                //    Console.WriteLine("4) день вылета ->");
+                //    arr[i].day = Console.ReadLine();
+                //    Console.WriteLine("\n\n");
+                //}
+
+                Console.WriteLine("\nВсе авиарейсы:\n\n");
+
+                //Проверка на правильность введённых городов
+                for(int i =0; i<arr.Length; i++)
+                {
+                    flag = false;
+                    for (int y =0; y<cities.Length; y++)
+                    {
+                        if(arr[i].destination==cities[y])
+                        {
+                            Console.WriteLine($"{arr[i].ToString()}\n================\n");
+                            flag = true;
+                        }
+                    }
+                    if (flag == false)
+                    {
+                        Console.WriteLine($"This city is not on the list. Flight #{i+1}\n================\n");
+                    }
+                }
+
+                // FOURTH TASK
+                Console.WriteLine("\nВведите пункт назначения:");
+                string punkt = Console.ReadLine();
+                
+                Console.WriteLine("\nСписок рейсов для заданного пункта назначения:\n");
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    flag = false;
+                    arr[i].Town(ref punkt, out flag);
+                    if(flag==true)
+                    {
+                        Console.WriteLine($"{arr[i].ToString()}\n================\n");
+                    }
+                }
+
+
+
+                Console.WriteLine("\nВведите день недели:");
+                punkt = Console.ReadLine();
+
+                Console.WriteLine("\nСписок рейсов для заданного дня недели:\n");
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    flag = false;
+                    arr[i].D_day(ref punkt, out flag);
+                    if (flag == true)
+                    {
+                        Console.WriteLine($"{arr[i].ToString()}\n================\n");
+                    }
+                }
             }
         }
     }
