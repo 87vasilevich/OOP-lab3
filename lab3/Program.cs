@@ -267,7 +267,7 @@ namespace lab3
                 // FOURTH TASK
                 Console.WriteLine("\nВведите пункт назначения:");
                 string punkt = Console.ReadLine();
-                
+                int c = 0;
                 Console.WriteLine("\nСписок рейсов для заданного пункта назначения:\n");
                 for (int i = 0; i < arr.Length; i++)
                 {
@@ -276,14 +276,18 @@ namespace lab3
                     if(flag==true)
                     {
                         Console.WriteLine($"{arr[i].ToString()}\n================\n");
+                        c++;
                     }
                 }
-
+                if (c==0)
+                {
+                    Console.WriteLine("\nТаких рейсов нет!\n");
+                }
 
 
                 Console.WriteLine("\nВведите день недели:");
                 punkt = Console.ReadLine();
-
+                c = 0;
                 Console.WriteLine("\nСписок рейсов для заданного дня недели:\n");
                 for (int i = 0; i < arr.Length; i++)
                 {
@@ -292,8 +296,20 @@ namespace lab3
                     if (flag == true)
                     {
                         Console.WriteLine($"{arr[i].ToString()}\n================\n");
+                        c++;
                     }
                 }
+                if (c==0)
+                {
+                    Console.WriteLine("\nТаких рейсов нет!\n");
+                }
+
+
+                // FIFTH TASK
+
+                var SomeType = new { destination ="Кудыкина Гора", depature_time="00:00"};
+                Console.WriteLine(SomeType.destination);
+
             }
         }
     }
