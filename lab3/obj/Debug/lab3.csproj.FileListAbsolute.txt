@@ -1,0 +1,7 @@
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\bin\Debug\lab3.exe.config
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\bin\Debug\lab3.exe
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\bin\Debug\lab3.pdb
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\obj\Debug\lab3.csprojAssemblyReference.cache
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\obj\Debug\lab3.csproj.CoreCompileInputs.cache
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\obj\Debug\lab3.exe
+D:\Study\1 semestr 2 course\OOP\lab3\lab3\obj\Debug\lab3.pdb

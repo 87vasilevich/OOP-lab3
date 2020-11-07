@@ -31,12 +31,20 @@ namespace lab3
             this.depature_time = "18:58";
             this.day = "Monday";
             this.flight_number = destination.GetHashCode() + depature_time.GetHashCode();
+            if (this.flight_number<0)
+            {
+                this.flight_number = Math.Abs(this.flight_number);
+            }
             count++;
         }
 
         public Airline(string destination, string type_of_plane, string depature_time, string day)
         {
             this.flight_number = destination.GetHashCode() + depature_time.GetHashCode();
+            if (this.flight_number < 0)
+            {
+                this.flight_number = Math.Abs(this.flight_number);
+            }
             this.destination = destination;
             this.type_of_plane = type_of_plane;
             this.depature_time = depature_time;
@@ -47,6 +55,10 @@ namespace lab3
         public Airline(string destination, string type_of_plane = "Embraer E-175", string depature_time = "15:00")
         {
             this.flight_number = destination.GetHashCode() + depature_time.GetHashCode();
+            if (this.flight_number < 0)
+            {
+                this.flight_number = Math.Abs(this.flight_number);
+            }
             this.destination = destination;
             this.type_of_plane = type_of_plane;
             this.depature_time = depature_time;
@@ -59,10 +71,10 @@ namespace lab3
 
         //}
 
-        //static Airline()
-        //{
-        //    count = 0;
-        //}
+        static Airline()
+        {
+            count = 0;
+        }
 
 
         //Методы
@@ -90,7 +102,7 @@ namespace lab3
             }
             private set
             {
-                if (type_of_plane.Length > 100)
+                if (type_of_plane.Length > 50)
                 {
                     Console.WriteLine("Incorrect type of plane");
                 }
@@ -101,20 +113,91 @@ namespace lab3
             }
         }
 
+
+        //Методы
         public static int Info()
         {
             return count;
         }
         public override string ToString()
         {
-            return ($"Destination - {destination}, flight number is {flight_number}, type of plane - {type_of_plane}, {depature_time} - depature time on {day}.\n\n");
+            return ($"Destination - {destination}, flight number is {flight_number}, type of plane - {type_of_plane}, {depature_time} - depature time on {day}.");
         }
+
+
+
         /////////////////////////////////////////////////////////
+
+
+
 
         class Program
         {
             static void Main(string[] args)
             {
+                // FIRST TASK
+
+                Airline u_one = new Airline();
+                Airline u_two = new Airline("Gomel", "CY-24", "3:00", "Tuesday");
+                Airline u_three = new Airline("Kiev");
+
+                u_one.PlaneType = u_one.type_of_plane;
+                u_two.PlaneType = u_two.type_of_plane;
+                u_three.PlaneType = u_three.type_of_plane;
+
+                Console.WriteLine(u_one.Equals(u_three)); // Пример. Сравнение 1-го и 3-го рейса
+
+                string[] cities = { "Minsk", "Berlin", "Kiev", "Odessa", "Tokyo", "Moscow", "Paris", "Barcelona"};
+
+                bool flag = false;
+                foreach (string city in cities)
+                {
+                    if(u_one.destination == city)
+                    {
+                        Console.WriteLine($"\n{u_one.ToString()}\n================\n");
+                        flag = true;
+                    }
+                }
+                if (flag == false)
+                {
+                    Console.WriteLine("This city is not on the list\n================\n");
+                }
+
+
+                flag = false;
+                foreach (string city in cities)
+                {
+                    if (u_two.destination == city)
+                    {
+                        Console.WriteLine($"{u_two.ToString()}\n================\n");
+                        flag = true;
+                    }
+                }
+                if (flag == false)
+                {
+                    Console.WriteLine("This city is not on the list\n================\n");
+                }
+
+
+                flag = false;
+                foreach (string city in cities)
+                {
+                    if (u_three.destination == city)
+                    {
+                        Console.WriteLine($"{u_three.ToString()}\n================\n");
+                        flag = true;
+                    }
+                }
+                if (flag == false)
+                {
+                    Console.WriteLine("This city is not on the list\n================\n");
+                }
+
+                Console.WriteLine($"\nFor the 2nd task, {count} flight(s) was(were) taken");
+
+                //SECOND TASK
+
+
 
             }
         }
